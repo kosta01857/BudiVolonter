@@ -1,0 +1,150 @@
+{%load static%}
+<!--Anja Mihajlov 2020/0339-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>BV Registracija Volontera</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+
+    <script src="{% static 'JS/regex.js' %}"></script>
+    <link href="{% static 'CSS/main_page.css' %}" rel="stylesheet" />
+    <link href="{% static 'CSS/reg_vol.css'%}" rel="stylesheet" />
+    <script src="{% static 'JS/switchPage.js' %}"></script>
+  </head>
+  <body onload="addListeners()" style="background-color: #fcfdfa">
+    {{navbar|safe}}
+
+    <div class="container-fluid" style="color: #37401c">
+      <div
+        class="row justify-content-center align-items-center"
+        style="height: 100vh"
+      >
+        <div class="col-md-6" style="padding-top: 20px">
+          <h2 class="text-center mb-4">Registracija Volontera</h2>
+          <form id="registrationForm" method="POST">
+            <div class="form-group">
+              <div class="name error" id="name error"></div>
+              <label for="ime">Ime:</label>
+              <input
+                type="text"
+                id="ime"
+                name="ime"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="lastname error" class="error"></div>
+              <label for="prezime">Prezime:</label>
+              <input
+                type="text"
+                id="prezime"
+                name="prezime"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="date error" class="error"></div>
+              <label for="datumRodjenja">Datum rođenja:</label>
+              <input
+                type="date"
+                id="datumRodjenja"
+                name="datumRodjenja"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="cat">Interesovanja</label>
+              <select id="cat" name="categories" class="form-control" multiple>
+                {% for cat in cats %}
+                <option value="{{cat}}">{{cat}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div id="email error" class="error"></div>
+              <label for="email">E-mail:</label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="pass error" class="error"></div>
+              <label for="lozinka">Lozinka:</label>
+              <input
+                type="password"
+                id="lozinka"
+                name="lozinka"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="confirm pass error" class="error"></div>
+              <label for="potvrdiLozinku">Potvrdite lozinku:</label>
+              <input
+                type="password"
+                id="potvrdiLozinku"
+                name="potvrdiLozinku"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="d-flex justify-content-center">
+              <button id="confirm btn" class="dugme">
+                Potvrdi registraciju
+              </button>
+            </div>
+          </form>
+          {% if poruka %}
+          <p>{{ poruka }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $("#cat").multiselect({
+          includeSelectAllOption: true,
+        });
+      });
+    </script>
+    {{footer|safe}}
+  </body>
+</html>

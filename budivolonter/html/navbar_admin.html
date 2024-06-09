@@ -1,0 +1,67 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #c2da91"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="welcome"
+      ><img src="../../static/resources/bvp5.png" height="60px" width="60px"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button
+            onclick="switchPage('search_choose')"
+            class="searchButton btn rounded-circle"
+            type="submit"
+          >
+            <i
+              class="bi bi-people-fill"
+              style="color: #37401c"
+              title="Pretraga korisnika"
+            ></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+			id='searchActBtn'
+            onclick="switchPage('search_activity')"
+            class="searchButton btn rounded-circle"
+            type="submit"
+          >
+            <i
+              class="bi bi-flag-fill"
+              style="color: #37401c"
+              title="Pretraga aktivnosti"
+            ></i>
+          </button>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-right"></ul>
+      <div class="d-flex">
+        <button
+          class="searchButton btn"
+          type="submit"
+          style="margin-right: 20px"
+          onclick="switchPage('admin_start')"
+        >
+          Ukloni
+        </button>
+        <a style="color: #5c7c2f; font-size: 30px" href="logout"
+          ><i class="bi bi-box-arrow-right" title="Izlogujte se"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+</nav>

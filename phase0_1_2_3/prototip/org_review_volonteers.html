@@ -1,0 +1,428 @@
+<!--natalija-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="{% static './main_page.css' %}" rel="stylesheet">
+    <link href="{% static './org_profile.css' %}" rel="stylesheet">
+    <link href="{% static './org_review_volonteers.css' %}" rel="stylesheet">
+    <title>Oceni volontere</title>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #C2DA91;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="main_page.html"><img src="{% static './resources/bvp5.png' %}" height="60px" width="60px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <button onclick = "switchPage('choose_search.html')"class="searchButton btn rounded-circle" type="submit"><i class="bi bi-people-fill" style="color: #37401C;" title="Pretraga korisnika"></i></button>
+
+            </li>
+            <li class="nav-item" >
+              <button onclick="switchPage('search_act.html')" class="searchButton btn rounded-circle" type="submit"><i class="bi bi-flag-fill" style="color: #37401C;" title="Pretraga aktivnosti"></i></button>
+            </li>
+          </ul>
+       
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-right">
+            <div class="container">
+                <li class="nav-item">
+                    <button class="searchButton btn" id="OtvoriAkt" type="submit"><i class="bi bi-send-fill mr-1"></i>Otvori Aktivnost</button>
+                </li>
+            </div>
+        </ul>
+
+        <div class="d-flex align-items-center">
+            <button class="searchButton btn" type="submit"><i class="bi bi-person-lines-fill mr-1"></i>Profil</button>
+            <button id = "inbox" class="searchButton btn d-flex align-items-center justify-content-center" style="color:#37401C;background-color:#D3E7A6;"><i class="bi bi-chat-left-text-fill mr-1"></i>Prepiske<span style="color:#F8FAF3" class="badge bg-danger ml-1">7</span>
+            </button>
+            <div class="d-flex flex-column justify-content-end align-items-end pl-1">
+                <a style="color:#5C7C2F; font-size: 30px;" href="main_page.html"><i class="bi bi-box-arrow-right" title="Izlogujte se"></i></a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <div class="container" style="background-color: #F2FAFB; margin-top: 20px;">
+        <div class="row justify-content-center" style="padding-top: 20px;">
+            <h3 class="text-center">Zelena inicijativa - Šareni vrtovi</h3>            
+        </div>
+        <div class="row" style="margin: 20px; margin-bottom: 10px;">
+            <h5>Volonteri koji su učestvovali:</h5>
+        </div>
+        <div class="container" style="padding: 30px; padding-top: 0px;">
+            <!--Volonter-->
+            <div class="row justify-content-center align-items-center" style="background-color: #CAF1F6;">
+                <div class="col-sm-4">
+                    Volonter 1
+                </div>
+                <div class="prijave col-sm-8 d-flex justify-content-end">
+                    <a href="#" data-toggle="modal" data-target="#Volonter1">
+                        <button type="button" class="btn btn-primary btn-block btn-sm float-right">Ostavi recenziju volonteru</button>
+                    </a>
+                    <div class="modal fade" id="Volonter1" tabindex="-1" role="dialog" aria-labelledby="Volonter1Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Volonter1Label">Recenzija</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form>
+                                          <div class="form-group"style="padding-top: 0;">
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="preporucujem">
+                                              <label class="form-check-label" for="recommendYes">Preporučujem</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="ne-preporucujem">
+                                              <label class="form-check-label" for="recommendNo">Ne preporučujem</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="comment">Komentar:</label>
+                                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>                                           
+                                            </div>
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-primary ">Potvrdi</button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                </div>                                
+                                
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <br>
+            
+            <!--Volonter-->
+            <div class="row justify-content-center align-items-center" style="background-color: #CAF1F6;">
+                <div class="col-sm-4">
+                    Volonter 2
+                </div>
+                <div class="prijave col-sm-8 d-flex justify-content-end">
+                    <a href="#" data-toggle="modal" data-target="#Volonter1">
+                        <button type="button" class="btn btn-primary btn-block btn-sm float-right">Ostavi recenziju volonteru</button>
+                    </a>
+                    <div class="modal fade" id="Volonter1" tabindex="-1" role="dialog" aria-labelledby="Volonter1Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Volonter1Label">Recenzija</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form>
+                                          <div class="form-group"style="padding-top: 0;">
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="preporucujem">
+                                              <label class="form-check-label" for="recommendYes">Preporučujem</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="ne-preporucujem">
+                                              <label class="form-check-label" for="recommendNo">Ne preporučujem</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="comment">Komentar:</label>
+                                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>                                           
+                                            </div>
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-primary ">Potvrdi</button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                </div>                                
+                                
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <br>
+
+            <!--Volonter-->
+            <div class="row justify-content-center align-items-center" style="background-color: #CAF1F6;">
+                <div class="col-sm-4">
+                    Volonter 3
+                </div>
+                <div class="prijave col-sm-8 d-flex justify-content-end">
+                    <a href="#" data-toggle="modal" data-target="#Volonter1">
+                        <button type="button" class="btn btn-primary btn-block btn-sm float-right">Ostavi recenziju volonteru</button>
+                    </a>
+                    <div class="modal fade" id="Volonter1" tabindex="-1" role="dialog" aria-labelledby="Volonter1Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Volonter1Label">Recenzija</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form>
+                                          <div class="form-group"style="padding-top: 0;">
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="preporucujem">
+                                              <label class="form-check-label" for="recommendYes">Preporučujem</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="ne-preporucujem">
+                                              <label class="form-check-label" for="recommendNo">Ne preporučujem</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="comment">Komentar:</label>
+                                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>                                           
+                                            </div>
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-primary ">Potvrdi</button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                </div>                                
+                                
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <br>
+
+            <!--Volonter-->
+            <div class="row justify-content-center align-items-center" style="background-color: #CAF1F6;">
+                <div class="col-sm-4">
+                    Volonter 4
+                </div>
+                <div class="prijave col-sm-8 d-flex justify-content-end">
+                    <a href="#" data-toggle="modal" data-target="#Volonter1">
+                        <button type="button" class="btn btn-primary btn-block btn-sm float-right">Ostavi recenziju volonteru</button>
+                    </a>
+                    <div class="modal fade" id="Volonter1" tabindex="-1" role="dialog" aria-labelledby="Volonter1Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Volonter1Label">Recenzija</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form>
+                                          <div class="form-group"style="padding-top: 0;">
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="preporucujem">
+                                              <label class="form-check-label" for="recommendYes">Preporučujem</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="ne-preporucujem">
+                                              <label class="form-check-label" for="recommendNo">Ne preporučujem</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="comment">Komentar:</label>
+                                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>                                           
+                                            </div>
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-primary ">Potvrdi</button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                </div>                                
+                                
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <br>
+
+            <!--Volonter-->
+            <div class="row justify-content-center align-items-center" style="background-color: #CAF1F6;">
+                <div class="col-sm-4">
+                    Volonter 5
+                </div>
+                <div class="prijave col-sm-8 d-flex justify-content-end">
+                    <a href="#" data-toggle="modal" data-target="#Volonter1">
+                        <button type="button" class="btn btn-primary btn-block btn-sm float-right">Ostavi recenziju volonteru</button>
+                    </a>
+                    <div class="modal fade" id="Volonter1" tabindex="-1" role="dialog" aria-labelledby="Volonter1Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Volonter1Label">Recenzija</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form>
+                                          <div class="form-group"style="padding-top: 0;">
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="preporucujem">
+                                              <label class="form-check-label" for="recommendYes">Preporučujem</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="ne-preporucujem">
+                                              <label class="form-check-label" for="recommendNo">Ne preporučujem</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="comment">Komentar:</label>
+                                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>                                           
+                                            </div>
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-primary ">Potvrdi</button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                </div>                                
+                                
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <br>
+
+            <!--Volonter-->
+            <div class="row justify-content-center align-items-center" style="background-color: #CAF1F6;">
+                <div class="col-sm-4">
+                    Volonter 6
+                </div>
+                <div class="prijave col-sm-8 d-flex justify-content-end">
+                    <a href="#" data-toggle="modal" data-target="#Volonter1">
+                        <button type="button" class="btn btn-primary btn-block btn-sm float-right">Ostavi recenziju volonteru</button>
+                    </a>
+                    <div class="modal fade" id="Volonter1" tabindex="-1" role="dialog" aria-labelledby="Volonter1Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Volonter1Label">Recenzija</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form>
+                                          <div class="form-group"style="padding-top: 0;">
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="preporucujem">
+                                              <label class="form-check-label" for="recommendYes">Preporučujem</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="ne-preporucujem">
+                                              <label class="form-check-label" for="recommendNo">Ne preporučujem</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="comment">Komentar:</label>
+                                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>                                           
+                                            </div>
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-primary ">Potvrdi</button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                </div>                                
+                                
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            <br>
+
+            <!--Volonter-->
+            <div class="row justify-content-center align-items-center" style="background-color: #CAF1F6;">
+                <div class="col-sm-4">
+                    Volonter 7
+                </div>
+                <div class="prijave col-sm-8 d-flex justify-content-end">
+                    <a href="#" data-toggle="modal" data-target="#Volonter1">
+                        <button type="button" class="btn btn-primary btn-block btn-sm float-right">Ostavi recenziju volonteru</button>
+                    </a>
+                    <div class="modal fade" id="Volonter1" tabindex="-1" role="dialog" aria-labelledby="Volonter1Label" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="Volonter1Label">Recenzija</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container">
+                                        <form>
+                                          <div class="form-group"style="padding-top: 0;">
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendYes" value="preporucujem">
+                                              <label class="form-check-label" for="recommendYes">Preporučujem</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                              <input class="form-check-input" type="radio" name="recommendation" id="recommendNo" value="ne-preporucujem">
+                                              <label class="form-check-label" for="recommendNo">Ne preporučujem</label>
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="comment">Komentar:</label>
+                                            <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+                                          </div>
+                                          <div class="row">
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Odustani</button>                                           
+                                            </div>
+                                            <div class="col-sm-6 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-primary ">Potvrdi</button>
+                                            </div>
+                                          </div>
+                                        </form>
+                                      </div>
+                                </div>                                
+                                
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

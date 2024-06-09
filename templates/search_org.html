@@ -1,0 +1,83 @@
+{%load static%}
+<!--Anja Mihajlov 2020/0339-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- <link href="/Users/kosta01856/Documents/bootstrap-5.3.3-dist/css/bootstrap.css' %}" rel="stylesheet">
+			<script src="/Users/kosta01856/Documents/bootstrap-5.3.3-dist/js/bootstrap.bundle.js' %}"></script>
+			-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="{% static './CSS/main_page.css' %}" rel="stylesheet" />
+    <link href="{% static './CSS/search_org.css' %}" rel="stylesheet" />
+    <title>Pretraga organizacija gost</title>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+  </head>
+  <body style="background-color: #fcfdfa">
+    {{navbar|safe}}
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          class="col-sm-12 d-flex justify-content-center"
+          style="padding-top: 10px"
+        >
+          <div style="margin-top: 20px">
+            <form action="{% url 'search_organization' %}" method="GET">
+              <label for="name_search">Pretraga organizacije po imenu:</label>
+              <input type="text" id="name_search" name="name_search" />
+              <button type="submit" class="btn btn-primary">Pretraži</button>
+            </form>
+          </div>
+        </div>
+
+        <div
+          class="container"
+          style="padding: 30px; padding-top: 0px; margin-top: 20px"
+        >
+          <!--Organizacija-->
+          {%for org in orgs%}
+
+          <div
+            class="row justify-content-center align-items-center"
+            style="background-color: #caf1f6"
+          >
+            <div class="col-sm-4">{{org.ime}}</div>
+            <div class="prijave col-sm-8 d-flex justify-content-end">
+              <a href="{% url 'profile' %}?id={{ org.idkor }}">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block btn-sm float-right"
+                >
+                  Pogledaj profil
+                </button>
+              </a>
+            </div>
+          </div>
+          <br />
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+    {{footer|safe}}
+  </body>
+</html>
+

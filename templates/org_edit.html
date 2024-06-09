@@ -1,0 +1,121 @@
+{%load static%}
+<!--natalija-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="{% static './CSS/main_page.css' %}" rel="stylesheet" />
+    <link href="{% static './CSS/org_profile.css' %}" rel="stylesheet" />
+    <title>Azuriraj profil</title>
+    <script src="{% static 'JS/regex.js' %}"></script>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+  </head>
+  <body onload="addListeners()">
+    {{navbar|safe}}
+    <div class="container" style="margin-top: 40px">
+      <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="background-color: #f2fafb">
+          <div id="org-info">
+            <form id="edit-form" method="post">
+              <table class="table" id="user-info">
+                <tr>
+                  <div class="name error" id="name error"></div>
+                  <td>Naziv:</td>
+                  <td>
+                    <input
+                      type="text"
+                      name="ime"
+                      id="ime"
+                      value="{{korisnik.ime}}"
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <div class="error" id="pib error"></div>
+                  <td>PIB:</td>
+                  <td>
+                    <input
+                      type="number"
+                      name="pib"
+                      id="pib"
+                      value="{{korisnik.pib}}"
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <div id="tel error" class="error"></div>
+                  <td>Broj telefona:</td>
+                  <td>
+                    <input
+                      type="phone"
+                      name="telefon"
+                      id="telefon"
+                      value="{{korisnik.telefon}}"
+                      required
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>E-mail:</td>
+                  <td>{{korisnik.email}}</td>
+                </tr>
+                {% if poruka %}
+                <p>{{ poruka }}</p>
+                {% endif %}
+                <tr>
+                  <td colspan="2">
+                    <div class="row">
+                      <div class="col-sm-6 d-flex">
+                        <button
+                          class="dugme btn btn-primary"
+                          type="button"
+                          onclick='switchPage("my_profile")'
+                        >
+                          Odustani
+                        </button>
+                      </div>
+                      <div class="col-sm-6 d-flex justify-content-end">
+                        <button
+                          type="submit"
+                          class="dugme btn btn-primary"
+                          id="confirm btn"
+                        >
+                          Potvrdi
+                        </button>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{footer|safe}}
+  </body>
+</html>
+

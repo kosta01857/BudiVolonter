@@ -1,0 +1,23 @@
+.prethodne-aktivnosti {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  /*background-color: #CAF1F6;
+    color: #107D98;*/
+  font-size: 20px;
+}
+
+.ostavi-rec {
+  margin-top: 20px;
+  align-self: center;
+  padding: 8px 16px;
+  background-color: #00a2c7;
+  color: #f8faf8;
+  font-size: 20px;
+}
+
+#ostavi-rec:hover {
+  background-color: #0797b9;
+  border-color: #107d98;
+}
+

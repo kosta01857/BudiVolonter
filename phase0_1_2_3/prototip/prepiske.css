@@ -1,0 +1,31 @@
+.message{
+    width: 150px;
+    max-width: 70%;
+    margin-bottom: 10px; 
+    padding: 10px; 
+    border-radius: 10px;
+    background-color: #E2F0BD; 
+    color: #000; 
+    word-wrap: break-word;
+    position: relative;
+    text-align: center;
+}
+.chat-box{
+    margin-bottom: 300px;
+}
+.list-group>li{
+    background-color: #EEF6D6;
+    border: none;
+    margin: 3px;
+}
+.list-group>li:hover{
+    background-color: #E2F0BD;
+}
+
+.badge{
+    color:#EEF6D6
+}
+.card-title{
+    margin: 0px;
+}
+

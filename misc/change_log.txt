@@ -1,0 +1,71 @@
+8.4.2024 , Kosta Novokmet:
+-promenjen SSU autorizacija korisnika, vise info u pdfu
+-dodata html stranica gde korisnik bira da li zeli pretragu volontera ili org, posto je to jedno dugme u navbaru(pretraga korisnika)
+-dodat js file koji omogucava da se promeni stranica kada se klikne dugme
+	*sada na klik pretraga i ostalih buttona, stranica se menja na odgovarajucu
+	*dugme za inbox i moj profil nisu impl jer nisam sig sta tu sve treba
+	*dugmici za izbor da li se pretrazuje vol ili org nisu impl 
+-dodat slobodan unos za vestine/zahteve prilikom otvaranja aktivnosti 
+
+9.5.2024 , Kosta Novokmet:
+-napravljen django projekat
+	-conf folder -> konfiguracioni fajlovi,izmeniti password(port) za database connection u settings.py
+	-templates -> lokacija svih html fajlova
+	-sve otale faze premestene u folder phase0_1_2_3 radi preglednosti
+	-u .gitignore dodato da se ignorisu pycache i venv folderi
+	-req.txt sadrzi sve potrebne module -> pokreuti pip install -r req.txt	
+	-budivolonter -> nasa aplikacija (mada bi trebalo da breakdownujemo funkcionalnosti na vise aplikacija)
+	-svi css fajlovi dodati u CSS folder
+	-izgenerisani modeli za bazu
+10.5.2024, Kosta Novokmet:
+	-kompozitni primarni kljuc u tabelama:
+		lokacija, aktivnost
+	promenjen na samo jedan primarni kljuc( zbog ovoga su morale da se menjaju i druge tabele)
+	promenjena slika, dokument i .sql skripta
+11.5.2024 , Kosta Novokmet:
+	-dodat budivolonter.urls
+	-dodat fajl models_func.py gde su funkcije za rad sa bazom
+12.5.2024, Kosta Novokmet:
+	-izmenjena baza, pogledati SpecifikacjaBaze.docx changelog
+		-izmenjena slika i .sql skripta
+	-dodat locations.py
+		-tu imamo listu svih drzava i recnik kontinent:[drzave]
+			-treba meni za otvaranje akt a vrv i Anji za pretragu
+	-dodat utils.py
+		-tu pisemo neke pomocne fje koje se ne uklapaju nigde drugde
+	-na svim stranicama dodat {% load static %}
+		-to znaci da ce znati staticke rute
+			-u settings.py, ispod static_url... dodati:
+				STATICFILES_DIRS = [
+					BASE_DIR/'templates'
+					]
+
+		-na svakoj stranici na kojoj radite uraditi sledece:
+			- promeniti putanju sa npr ./CSS/ex.css u {% static 'CSS/ex.css' %}
+	-promenjen models.py kako bi podrzao manyToMany relationships
+	-implementiran SSU 7
+13/14.5.2024 , Kosta Novokmet:
+	-Gotov prikaz aktivnih i arhiviranih atkivnosti za profil organizacije(ukljucujuci i detaljan opis sa recenzijama)
+	-Gotova funkionalnost update-ovanja broja slob mesta neke aktivnosti
+		-za oba ova se koristio AJAX
+			-zato sam dodao api.py koja sluzi za rutiranje ajax endpoint-ova
+			-api_func obradjuju api zahteve, komuniciraju sa bazom preko models_func
+
+15.5.2024 , Kosta Novokmet:
+	-Popravljeno da sada AJAX zahtev salje mejl korisnika za koga se traze aktivnosti
+		-posle iz mejla vadi id i trazi aktivnosti po tom id itd
+		-ovo znaci da ce sad moci da trazi i aktivnosti za nekog korisnika kome gleda profil
+	-dodat dinamicki navbar
+	-promenjen asgi da podrzava kanale
+		-u settings.py dodati:
+			-u installed aps:
+				'daphne',
+				'corsheaders'
+			-bilo gde:
+				CORS_ALLOWED_ORIGINS = [
+				    'http://localhost:8000',
+				]
+				ASGI_APPLICATION = "conf.asgi.application"
+	-req.txt i change_log pomereni u misc folder
+		-pip install -r misc/req.txt treba da se pokrene opet
+	-na dosta funkc dodato sta vraca(to se ne proverava cisto dokumentaciono)

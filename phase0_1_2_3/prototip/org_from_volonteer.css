@@ -1,0 +1,13 @@
+#posalji_poruku{
+    margin-top: 20px;
+    align-self: center;
+    padding: 8px 16px;
+    background-color: #00A2C7;
+    color: #F8FAF8;
+    font-size: 20px;
+}
+
+#posalji_poruku:hover{
+    background-color: #0797B9;
+    border-color: #107D98;
+}

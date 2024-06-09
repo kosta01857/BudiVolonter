@@ -1,0 +1,219 @@
+{%load static%}
+<!--Anja Mihajlov 2020/0339-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="{% static './CSS/main_page.css' %}" rel="stylesheet" />
+    <link href="{% static './CSS/search_act.css' %}" rel="stylesheet" />
+    <title>Pretraga aktivnosti</title>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+  </head>
+  <body style="background-color: #fcfdfa">
+    {{navbar|safe}}
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          class="col-sm-4"
+          style="background-color: #eef6d6; padding-top: 15px"
+        >
+          <h2 style="color: #37401c">Filteri</h2>
+          <div>
+            <form action="{% url 'search_activity' %}" method="GET">
+              <div>
+                <label for="date_from">Datum od:</label>
+                <input type="date" id="date_from" name="date_from" />
+              </div>
+              <div>
+                <label for="date_to">Datum do:</label>
+                <input type="date" id="date_to" name="date_to" />
+              </div>
+              <div>
+                <label for="country">Gde:</label>
+                <select id="country" name="country">
+                  <option value="" disabled selected>Odaberi kontinent</option>
+                  {%for cont in conts%}
+                  <option value="{{cont}}">{{cont}}</option>
+
+                  {% endfor %}
+                </select>
+              </div>
+              <!--div style="margin-top: 4px;">
+								<p style="margin-bottom: 0px; padding-bottom: 0px;">Posedujem veštine:</p>
+								{% for skill in skills %}
+								<label for="skill{{ skill.idves }}">
+									<input type="checkbox" id="skill{{ skill.idves }}" name="skill" value="{{ skill.idves }}" checked>
+									{{ skill.opis }}
+								</label><br>
+								{% endfor %}
+							</div-->
+              <div>
+                <label for="volunteering_area" style="margin-bottom: 3px"
+                  >Oblast volontiranja:</label
+                >
+                <select id="volunteering_area" name="area">
+                  <option value="" disabled selected>
+                    Odaberi oblast volontiranja
+                  </option>
+                  {% for cat in cats %}
+                  <option value="{{cat.idobl}}">{{cat.oblast}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <button type="submit" style="margin-top: 10px">
+                Primeni filtere
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-sm-8" style="background-color: #f8faf3">
+          {%for act in acts%}
+          <div class="aktivnost">
+            <div class="row align-items-center">
+              <div class="col-sm-8">
+                <h2 class="mr-3 mb-0">{{act.naziv}}</h2>
+                <a
+                  style="color: #00a2c7"
+                  href="#"
+                  data-toggle="modal"
+                  data-target="#example{{act.idakt}}Modal"
+                  >Opis akivnosti</a
+                >
+                <div
+                  class="modal fade"
+                  id="example{{act.idakt}}Modal"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="example{{act.idakt}}ModalLabel"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5
+                          class="modal-title"
+                          id="example{{act.idakt}}ModalLabel"
+                        >
+                          {{act.organizacija}} - {{act.naziv}}
+                        </h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="row" style="margin-top: 10px">
+                          <div class="col-sm-6 d-flex justify-content-center">
+                            <i class="bi bi-pin-map"></i
+                            >&nbsp;&nbsp;{{act.mesto}}, {{act.drzava}}
+                          </div>
+                          <div class="col-sm-6 d-flex justify-content-center">
+                            <i class="bi bi-calendar4-week"></i
+                            >&nbsp;&nbsp;{{act.datumod|date:'d.m.Y'}}-{{act.datumdo|date:'d.m.Y'}}
+                          </div>
+                        </div>
+                        <div class="row" style="margin-top: 15px">
+                          <div class="col-sm-12 text-justify">{{act.opis}}</div>
+                        </div>
+                        <div
+                          class="row d-flex align-items-center"
+                          style="margin-top: 10px"
+                        >
+                          <div class="col-sm-6">
+                            <div>
+                              Kategorije: {%for cat in act.cats%}
+                              <br />
+                              {{cat.oblast}} {%endfor%}
+                            </div>
+                            <div>
+                              Potrebne veštine:
+                              <ul style="padding-left: 25px">
+                                {%for skill in act.skills%}
+                                <li type="square">{{skill.opis}}</li>
+                                {%endfor%}
+                              </ul>
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div>
+                              Poslednji dan za prijavu:
+                              {{act.datumrok|date:'d.m.Y'}}
+                            </div>
+                            <div>Broj slobodnih mesta: {{act.brmesta}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div
+                  class="d-flex justify-content-end align-items-center"
+                  style="margin-bottom: 5px"
+                >
+                  <div class="mr-2">
+                    Broj preostalih mesta:
+                    <span id="peopleCount">{{act.brmesta}}</span>
+                  </div>
+                </div>
+                {%if korisnik == 0%}
+                <div class="prijave d-flex justify-content-end">
+                  <a href="#">
+                    <button
+                      type="button"
+                      onclick="switchPage('login')"
+                      class="btn btn-primary btn-block btn-sm float-right"
+                    >
+                      Prijavi se
+                    </button>
+                  </a>
+                </div>
+                {% elif korisnik.tip == 'V' %}
+                <div class="prijave d-flex justify-content-end">
+					<a href="activity_form?id={{act.idakt}}">
+                    <button
+					  name='prijavaBtn' 
+                      type="button"
+                      onclick=""
+                      class="btn btn-primary btn-block btn-sm float-right"
+                    >
+                      Prijavi se
+                    </button>
+                  </a>
+                </div>
+                {%endif%}
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+    {{footer|safe}}
+  </body>
+</html>

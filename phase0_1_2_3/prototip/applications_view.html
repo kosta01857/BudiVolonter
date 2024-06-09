@@ -1,0 +1,106 @@
+<!--autor:Djordje Sarovic-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="{% static './main_page.css' %}" rel="stylesheet">
+    <link href="{% static './org_profile.css' %}" rel="stylesheet">
+    <title>BudiVolonter!</title>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+</head>
+<body  style="background-color:#FCFDFA;">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #C2DA91;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="main_page.html"><img src="{% static './resources/bvp5.png' %}" height="60px" width="60px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <button onclick = "switchPage('choose_search.html')"class="searchButton btn rounded-circle" type="submit"><i class="bi bi-people-fill" style="color: #37401C;" title="Pretraga korisnika"></i></button>
+      
+                    </li>
+                    <li class="nav-item" >
+                      <button onclick="switchPage('search_act.html')" class="searchButton btn rounded-circle" type="submit"><i class="bi bi-flag-fill" style="color: #37401C;" title="Pretraga aktivnosti"></i></button>
+                    </li>
+                  </ul>
+            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-right">
+                <div class="container">
+                    <li class="nav-item">
+                        <button class="searchButton btn" id="OtvoriAkt" type="submit"><i class="bi bi-send-fill mr-1"></i>Otvori Aktivnost</button>
+                    </li>
+                </div>
+            </ul>
+ 
+            <div class="d-flex align-items-center">
+                <button class="searchButton btn" type="submit"><i class="bi bi-person-lines-fill mr-1"></i>Profil</button>
+                <button id = "inbox" class="searchButton btn d-flex align-items-center justify-content-center" style="color:#37401C;background-color:#D3E7A6;"><i class="bi bi-chat-left-text-fill mr-1"></i>Prepiske<span style="color:#F8FAF3" class="badge bg-danger ml-1">7</span>
+                </button>
+                <div class="d-flex flex-column justify-content-end align-items-end pl-1">
+                    <a style="color:#5C7C2F; font-size: 30px;" href="main_page.html"><i class="bi bi-box-arrow-right" title="Izlogujte se"></i></a>
+                </div>
+            </div> 
+          </div>
+        </div>
+      </nav>
+      <div class="container d-flex justify-content-center">
+        <div class="w-100 d-flex flex-column justify-content-start" style="background-color: #F8FAF3; min-height: 88vh;">
+            <form class="p-5">
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label"><h2>Aktivnost: Veseli Vrtovi</h2></label>
+                </div>
+            </form>
+            <div class="pl-5 pr-5 pb-5">
+                <div class="card w-100">
+                    <div class="card-body p-5 d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title"><a href="#" style="color: #5C7C2F;">Pera Peric</a></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><a href="#" style="color: #C2DA91;"><i class="bi bi-paperclip"></i>perapericrezime.pdf</a></h6>
+                            <p class="card-text w-75">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit temporibus assumenda optio veniam recusandae nulla? Rerum corporis quam dolore aspernatur, autem eum ipsum commodi sed molestiae, officia quia, laboriosam fugiat.</p>
+                        </div>
+                        <div class="d-flex align-items-end">
+                            <button type="button" class="btn btn-success m-1">Prihvati</button>
+                            <button type="button" class="btn btn-danger m-1">Odbij</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pl-5 pr-5 pb-5">
+                <div class="card w-100">
+                    <div class="card-body p-5 d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title"><a href="#" style="color: #5C7C2F;">Mika Mikic</a></h5>
+                            <p class="card-text w-75">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit, ducimus dolorem tempora vero inventore ratione quam quis, expedita quaerat reiciendis nulla veritatis quod excepturi rerum possimus omnis et, ad quas.</p>
+                        </div>
+                        <div class="d-flex align-items-end">
+                            <button type="button" class="btn btn-success m-1">Prihvati</button>
+                            <button type="button" class="btn btn-danger m-1">Odbij</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pl-5 pr-5 pb-5">
+                <div class="card w-100">
+                    <div class="card-body p-5 d-flex justify-content-between">
+                        <div>
+                            <h5 class="card-title"><a href="#" style="color: #5C7C2F;">Stefan Stefanovic</a></h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><a href="#" style="color: #C2DA91;"><i class="bi bi-paperclip"></i>stefirezi.pdf</a></h6>
+                            <p class="card-text w-75">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus dignissimos fugiat soluta quam dolorum incidunt, quis iure placeat suscipit doloribus officiis, labore vitae molestias atque excepturi repellendus omnis quasi ad!</p>
+                        </div>
+                        <div class="d-flex align-items-end">
+                            <button type="button" class="btn btn-success m-1">Prihvati</button>
+                            <button type="button" class="btn btn-danger m-1">Odbij</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</body>
+</html>

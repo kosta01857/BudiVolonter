@@ -1,0 +1,95 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light"
+  style="background-color: #c2da91"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="welcome"
+      ><img src="../../static/resources/bvp5.png" height="60px" width="60px"
+    /></a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <button
+            onclick="switchPage('search_choose')"
+            class="searchButton btn rounded-circle"
+            type="submit"
+          >
+            <i
+              class="bi bi-people-fill"
+              style="color: #37401c"
+              title="Pretraga korisnika"
+            ></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+			id='searchActBtn'
+            onclick="switchPage('search_activity')"
+            class="searchButton btn rounded-circle"
+            type="submit"
+          >
+            <i
+              class="bi bi-flag-fill"
+              style="color: #37401c"
+              title="Pretraga aktivnosti"
+            ></i>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            onclick="switchPage('my_acts')"
+            class="searchButton btn rounded-circle"
+            type="submit"
+          >
+            <i
+              class="bi bi-award-fill"
+              style="color: #37401c"
+              title="Moje aktivnosti"
+            ></i>
+          </button>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center">
+        <button
+          onclick='switchPage("my_profile")'
+          class="searchButton btn"
+          type="submit"
+        >
+          <i class="bi bi-person-lines-fill mr-1"></i>Profil
+        </button>
+        <button
+          onclick='switchPage("inbox")'
+          id="inbox"
+          class="searchButton btn d-flex align-items-center justify-content-center"
+          style="color: #37401c; background-color: #d3e7a6"
+        >
+          <i class="bi bi-chat-left-text-fill mr-1"></i>Prepiske<span
+            style="color: #f8faf3"
+            class="badge bg-danger ml-1"
+          ></span>
+        </button>
+        <div
+          class="d-flex flex-column justify-content-end align-items-end pl-1"
+        >
+          <a style="color: #5c7c2f; font-size: 30px" href="logout"
+            ><i class="bi bi-box-arrow-right" title="Izlogujte se"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<script src="/static/JS/refresh_navbar.js"></script>

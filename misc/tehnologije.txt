@@ -1,0 +1,11 @@
+Za izradu projekta korisceno:
+google docx za pisanje SSU
+bootstrap,css,JS,jquery i html za front end
+python,django framework za backend
+channels,mysqlclient,pygraphviz moduli
+mysql za bazu
+photoshop za logo
+selenium ide za testiranje
+starUML za modelovanje
+modul selenium za testiranje
+selenium ide za tesitranje

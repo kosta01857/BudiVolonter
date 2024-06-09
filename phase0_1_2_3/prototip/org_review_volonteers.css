@@ -1,0 +1,8 @@
+.prijave button{
+    width: 200px;
+    height: 40px;
+    background-color: #00A2C7;
+    border: none;
+    color: #F8FAF8;
+    margin:10px 0px;
+}

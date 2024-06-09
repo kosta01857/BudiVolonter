@@ -1,0 +1,421 @@
+<!--Anja Mihajlov 2020/0339-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="{% static './main_page.css' %}" rel="stylesheet">
+    <link href="{% static './org_profile.css' %}" rel="stylesheet">
+    <link href="{% static './search_act_org.css' %}" rel="stylesheet">
+    <title>Pretraga aktivnosti organizacija</title>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #C2DA91;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="main_page.html"><img src="{% static './resources/bvp5.png' %}" height="60px" width="60px"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <button onclick = "switchPage('choose_search.html')"class="searchButton btn rounded-circle" type="submit"><i class="bi bi-people-fill" style="color: #37401C;" title="Pretraga korisnika"></i></button>
+      
+                    </li>
+                    <li class="nav-item" >
+                      <button onclick="switchPage('search_act.html')" class="searchButton btn rounded-circle" type="submit"><i class="bi bi-flag-fill" style="color: #37401C;" title="Pretraga aktivnosti"></i></button>
+                    </li>
+                  </ul>
+           
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-right">
+                <div class="container">
+                    <li class="nav-item">
+                        <button class="searchButton btn" id="OtvoriAkt" type="submit"><i class="bi bi-send-fill mr-1"></i>Otvori Aktivnost</button>
+                    </li>
+                </div>
+            </ul>
+ 
+            <div class="d-flex align-items-center">
+                <button class="searchButton btn" type="submit"><i class="bi bi-person-lines-fill mr-1"></i>Profil</button>
+                <button id = "inbox" class="searchButton btn d-flex align-items-center justify-content-center" style="color:#37401C;background-color:#D3E7A6;"><i class="bi bi-chat-left-text-fill mr-1"></i>Prepiske<span style="color:#F8FAF3" class="badge bg-danger ml-1">7</span>
+                </button>
+                <div class="d-flex flex-column justify-content-end align-items-end pl-1">
+                    <a style="color:#5C7C2F; font-size: 30px;" href="main_page.html"><i class="bi bi-box-arrow-right" title="Izlogujte se"></i></a>
+                </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="container-fluid">
+        <div class="row">
+            <div class = "col-sm-4" style="background-color: #eef6d6; padding-top: 15px;">
+                <h2 style="color: #37401C;"> Filteri</h2>
+                <div>
+                    <form>
+                        <div>
+                          <label for="date_from">Datum od:</label>
+                          <input type="date" id="date_from" name="date_from">
+                        </div>
+                        <div>
+                          <label for="date_to">Datum do:</label>
+                          <input type="date" id="date_to" name="date_to">
+                        </div>
+                        <div>
+                          <label for="country">Gde:</label>
+                          <select id="country" name="country">
+                            <option value="" disabled selected>Odaberi regiju</option>
+                            <option value="srbija">Srbija</option>
+                            <option value="evropa">Evropa</option>
+                            <option value="s_amerika">Severna Amerika</option>
+                            <option value="j_amerika">Južna Amerika</option>
+                            <option value="afrika">Afrika</option>
+                            <option value="azija">Azija</option>
+                            <option value="au_oke">Australija i Okeanija</option>
+                          </select>
+                        </div>
+                        <div style="margin-top: 4px;">
+                          <p style="margin-bottom: 0px; padding-bottom: 0px;">Potrebne veštine:</p>
+                          <label><input type="checkbox" name="skills" value="vozacka_dozvola"> Vozačka dozvola</label><br>
+                          <label><input type="checkbox" name="skills" value="engleski_sertifikat"> Engleski jezik (sertifikat)</label><br>
+                          <label><input type="checkbox" name="skills" value="prva_pomoc"> Prva pomoć</label><br>
+                          <label><input type="checkbox" name="skills" value="m_office"> Microsoft Office</label><br>
+                        </div>
+                        <div>
+                          <label for="volunteering_area" style="margin-bottom: 3px;">Oblast volontiranja:</label>
+                          <select id="volunteering_area" name="volunteering_area">
+                            <option value="" disabled selected>Odaberi oblast volontiranja</option>
+                            <option value="rad_sa_decom">Rad sa decom</option>
+                            <option value="rad_sa_zivotinjama">Rad sa životinjama</option>
+                            <option value="rad_sa_o_inv">Rad sa osobama sa invaliditetom</option>
+                            <option value="manualni_rad">Manuelni rad</option>
+                            <option value="akitivizam">Aktivizam</option>
+                          </select>
+                        </div>
+                        <button type="submit" style="margin-top: 10px;">Primeni filtere</button>
+                      </form>
+                </div>
+            </div>
+            <div class="col-sm-8" style="background-color: #f8faf3;">
+                <div class="aktivnost">
+                    <div class="row align-items-center">
+                        <div class="col-sm-8">
+                            <h2 class="mr-3 mb-0">Očistimo Košutnjak</h2>
+                            <a style="color:#00A2C7" href="#" data-toggle="modal" data-target="#example1Modal">Opis aktivnosti</a>
+                            <div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="example1ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="example1ModalLabel">Zelena Inicijativa Beograd - Očistimo Košutnjak</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row" style="margin-top: 10px;">
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-pin-map"></i>&nbsp;&nbsp;Beograd</div>
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-calendar4-week"></i>&nbsp;&nbsp;1.4.2024.-3.4.2024.</div>
+                                            </div>
+                                            <div class="row" style="margin-top: 15px;">
+                                                <div class="col-sm-12 text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quidem quisquam fugiat porro similique quis maxime praesentium esse cupiditate. Nemo atque itaque sapiente neque, illum officia nam pariatur, voluptate auoluta nihil, praesentium omnis harum optio mollitia. Praesentium asperiores laboriosam hic? Quod reprehenderit non amet itaque rerum atque laudantium iste totam aspernatur placeat natus quisquam, animi deserunt. Illum et corrupti voluptatum dolore, veniam enim magnam deserunt quasi nobis! Delectus amet magni quis reprehenderit architecto hic earum harum natus quasi ut, ullam, neque doloribus nesciunt aspernatur placeat quam officia ducimus officiis esse iure corrupti! Ullam beatae perspiciatis, ratione repellat pariatur nisi veniam eum tempora culpa animi, aspernatur in veritatis iure ad. Magni modi nemo facere illo animi cum alias nisi iure inventore hic non ex, ipsam accusamus aliquam, est iusto molestiae atque maiores? Alias sequi tempore voluptatibus eaque repellat ab totam laudantium nesciunt libero laborum minus quae nisi provident, maiores obcaecati? Mollitia, error tempore, minus voluptas recusandae ipsum rem delectus, quis esse eius unde vero inventore maxime. Accusamus, rerum eos? Quasi perspiciatis id ex?</div>
+                                            </div>
+                                            <div class="row d-flex align-items-center" style="margin-top: 10px;">
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        Kategorija: Manuelni rad
+                                                    </div>
+                                                    <div>
+                                                        Potrebne veštine:
+                                                        <ul style="padding-left: 25px; ">
+                                                            <li type="square">Vozačka dozvola</li>   
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>Poslednji dan za prijavu: 31.3.2024.</div>
+                                                    <div>Broj slobodnih mesta: 10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex justify-content-end align-items-center" style="margin-bottom: 5px;">
+                                <div class="mr-2">Broj preostalih mesta: <span id="peopleCount">10</span></div>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+                <div class="aktivnost">
+                    <div class="row align-items-center">
+                        <div class="col-sm-8">
+                            <h2 class="mr-3 mb-0">Očistimo Košutnjak</h2>
+                            <a style="color:#00A2C7" href="#" data-toggle="modal" data-target="#example1Modal">Opis aktivnosti</a>
+                            <div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="example1ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="example1ModalLabel">Zelena Inicijativa Beograd - Očistimo Košutnjak</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row" style="margin-top: 10px;">
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-pin-map"></i>&nbsp;&nbsp;Beograd</div>
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-calendar4-week"></i>&nbsp;&nbsp;1.4.2024.-3.4.2024.</div>
+                                            </div>
+                                            <div class="row" style="margin-top: 15px;">
+                                                <div class="col-sm-12 text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quidem quisquam fugiat porro similique quis maxime praesentium esse cupiditate. Nemo atque itaque sapiente neque, illum officia nam pariatur, voluptate auoluta nihil, praesentium omnis harum optio mollitia. Praesentium asperiores laboriosam hic? Quod reprehenderit non amet itaque rerum atque laudantium iste totam aspernatur placeat natus quisquam, animi deserunt. Illum et corrupti voluptatum dolore, veniam enim magnam deserunt quasi nobis! Delectus amet magni quis reprehenderit architecto hic earum harum natus quasi ut, ullam, neque doloribus nesciunt aspernatur placeat quam officia ducimus officiis esse iure corrupti! Ullam beatae perspiciatis, ratione repellat pariatur nisi veniam eum tempora culpa animi, aspernatur in veritatis iure ad. Magni modi nemo facere illo animi cum alias nisi iure inventore hic non ex, ipsam accusamus aliquam, est iusto molestiae atque maiores? Alias sequi tempore voluptatibus eaque repellat ab totam laudantium nesciunt libero laborum minus quae nisi provident, maiores obcaecati? Mollitia, error tempore, minus voluptas recusandae ipsum rem delectus, quis esse eius unde vero inventore maxime. Accusamus, rerum eos? Quasi perspiciatis id ex?</div>
+                                            </div>
+                                            <div class="row d-flex align-items-center" style="margin-top: 10px;">
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        Kategorija: Manuelni rad
+                                                    </div>
+                                                    <div>
+                                                        Potrebne veštine:
+                                                        <ul style="padding-left: 25px; ">
+                                                            <li type="square">Vozačka dozvola</li>   
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>Poslednji dan za prijavu: 31.3.2024.</div>
+                                                    <div>Broj slobodnih mesta: 10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex justify-content-end align-items-center" style="margin-bottom: 5px;">
+                                <div class="mr-2">Broj preostalih mesta: <span id="peopleCount">10</span></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="aktivnost">
+                    <div class="row align-items-center">
+                        <div class="col-sm-8">
+                            <h2 class="mr-3 mb-0">Očistimo Košutnjak</h2>
+                            <a style="color:#00A2C7" href="#" data-toggle="modal" data-target="#example1Modal">Opis aktivnosti</a>
+                            <div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="example1ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="example1ModalLabel">Zelena Inicijativa Beograd - Očistimo Košutnjak</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row" style="margin-top: 10px;">
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-pin-map"></i>&nbsp;&nbsp;Beograd</div>
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-calendar4-week"></i>&nbsp;&nbsp;1.4.2024.-3.4.2024.</div>
+                                            </div>
+                                            <div class="row" style="margin-top: 15px;">
+                                                <div class="col-sm-12 text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quidem quisquam fugiat porro similique quis maxime praesentium esse cupiditate. Nemo atque itaque sapiente neque, illum officia nam pariatur, voluptate auoluta nihil, praesentium omnis harum optio mollitia. Praesentium asperiores laboriosam hic? Quod reprehenderit non amet itaque rerum atque laudantium iste totam aspernatur placeat natus quisquam, animi deserunt. Illum et corrupti voluptatum dolore, veniam enim magnam deserunt quasi nobis! Delectus amet magni quis reprehenderit architecto hic earum harum natus quasi ut, ullam, neque doloribus nesciunt aspernatur placeat quam officia ducimus officiis esse iure corrupti! Ullam beatae perspiciatis, ratione repellat pariatur nisi veniam eum tempora culpa animi, aspernatur in veritatis iure ad. Magni modi nemo facere illo animi cum alias nisi iure inventore hic non ex, ipsam accusamus aliquam, est iusto molestiae atque maiores? Alias sequi tempore voluptatibus eaque repellat ab totam laudantium nesciunt libero laborum minus quae nisi provident, maiores obcaecati? Mollitia, error tempore, minus voluptas recusandae ipsum rem delectus, quis esse eius unde vero inventore maxime. Accusamus, rerum eos? Quasi perspiciatis id ex?</div>
+                                            </div>
+                                            <div class="row d-flex align-items-center" style="margin-top: 10px;">
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        Kategorija: Manuelni rad
+                                                    </div>
+                                                    <div>
+                                                        Potrebne veštine:
+                                                        <ul style="padding-left: 25px; ">
+                                                            <li type="square">Vozačka dozvola</li>   
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>Poslednji dan za prijavu: 31.3.2024.</div>
+                                                    <div>Broj slobodnih mesta: 10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex justify-content-end align-items-center" style="margin-bottom: 5px;">
+                                <div class="mr-2">Broj preostalih mesta: <span id="peopleCount">10</span></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="aktivnost">
+                    <div class="row align-items-center">
+                        <div class="col-sm-8">
+                            <h2 class="mr-3 mb-0">Očistimo Košutnjak</h2>
+                            <a style="color:#00A2C7" href="#" data-toggle="modal" data-target="#example1Modal">Opis aktivnosti</a>
+                            <div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="example1ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="example1ModalLabel">Zelena Inicijativa Beograd - Očistimo Košutnjak</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row" style="margin-top: 10px;">
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-pin-map"></i>&nbsp;&nbsp;Beograd</div>
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-calendar4-week"></i>&nbsp;&nbsp;1.4.2024.-3.4.2024.</div>
+                                            </div>
+                                            <div class="row" style="margin-top: 15px;">
+                                                <div class="col-sm-12 text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quidem quisquam fugiat porro similique quis maxime praesentium esse cupiditate. Nemo atque itaque sapiente neque, illum officia nam pariatur, voluptate auoluta nihil, praesentium omnis harum optio mollitia. Praesentium asperiores laboriosam hic? Quod reprehenderit non amet itaque rerum atque laudantium iste totam aspernatur placeat natus quisquam, animi deserunt. Illum et corrupti voluptatum dolore, veniam enim magnam deserunt quasi nobis! Delectus amet magni quis reprehenderit architecto hic earum harum natus quasi ut, ullam, neque doloribus nesciunt aspernatur placeat quam officia ducimus officiis esse iure corrupti! Ullam beatae perspiciatis, ratione repellat pariatur nisi veniam eum tempora culpa animi, aspernatur in veritatis iure ad. Magni modi nemo facere illo animi cum alias nisi iure inventore hic non ex, ipsam accusamus aliquam, est iusto molestiae atque maiores? Alias sequi tempore voluptatibus eaque repellat ab totam laudantium nesciunt libero laborum minus quae nisi provident, maiores obcaecati? Mollitia, error tempore, minus voluptas recusandae ipsum rem delectus, quis esse eius unde vero inventore maxime. Accusamus, rerum eos? Quasi perspiciatis id ex?</div>
+                                            </div>
+                                            <div class="row d-flex align-items-center" style="margin-top: 10px;">
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        Kategorija: Manuelni rad
+                                                    </div>
+                                                    <div>
+                                                        Potrebne veštine:
+                                                        <ul style="padding-left: 25px; ">
+                                                            <li type="square">Vozačka dozvola</li>   
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>Poslednji dan za prijavu: 31.3.2024.</div>
+                                                    <div>Broj slobodnih mesta: 10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex justify-content-end align-items-center" style="margin-bottom: 5px;">
+                                <div class="mr-2">Broj preostalih mesta: <span id="peopleCount">10</span></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="aktivnost">
+                    <div class="row align-items-center">
+                        <div class="col-sm-8">
+                            <h2 class="mr-3 mb-0">Očistimo Košutnjak</h2>
+                            <a style="color:#00A2C7" href="#" data-toggle="modal" data-target="#example1Modal">Opis aktivnosti</a>
+                            <div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="example1ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="example1ModalLabel">Zelena Inicijativa Beograd - Očistimo Košutnjak</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row" style="margin-top: 10px;">
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-pin-map"></i>&nbsp;&nbsp;Beograd</div>
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-calendar4-week"></i>&nbsp;&nbsp;1.4.2024.-3.4.2024.</div>
+                                            </div>
+                                            <div class="row" style="margin-top: 15px;">
+                                                <div class="col-sm-12 text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quidem quisquam fugiat porro similique quis maxime praesentium esse cupiditate. Nemo atque itaque sapiente neque, illum officia nam pariatur, voluptate auoluta nihil, praesentium omnis harum optio mollitia. Praesentium asperiores laboriosam hic? Quod reprehenderit non amet itaque rerum atque laudantium iste totam aspernatur placeat natus quisquam, animi deserunt. Illum et corrupti voluptatum dolore, veniam enim magnam deserunt quasi nobis! Delectus amet magni quis reprehenderit architecto hic earum harum natus quasi ut, ullam, neque doloribus nesciunt aspernatur placeat quam officia ducimus officiis esse iure corrupti! Ullam beatae perspiciatis, ratione repellat pariatur nisi veniam eum tempora culpa animi, aspernatur in veritatis iure ad. Magni modi nemo facere illo animi cum alias nisi iure inventore hic non ex, ipsam accusamus aliquam, est iusto molestiae atque maiores? Alias sequi tempore voluptatibus eaque repellat ab totam laudantium nesciunt libero laborum minus quae nisi provident, maiores obcaecati? Mollitia, error tempore, minus voluptas recusandae ipsum rem delectus, quis esse eius unde vero inventore maxime. Accusamus, rerum eos? Quasi perspiciatis id ex?</div>
+                                            </div>
+                                            <div class="row d-flex align-items-center" style="margin-top: 10px;">
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        Kategorija: Manuelni rad
+                                                    </div>
+                                                    <div>
+                                                        Potrebne veštine:
+                                                        <ul style="padding-left: 25px; ">
+                                                            <li type="square">Vozačka dozvola</li>   
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>Poslednji dan za prijavu: 31.3.2024.</div>
+                                                    <div>Broj slobodnih mesta: 10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex justify-content-end align-items-center" style="margin-bottom: 5px;">
+                                <div class="mr-2">Broj preostalih mesta: <span id="peopleCount">10</span></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="aktivnost">
+                    <div class="row align-items-center">
+                        <div class="col-sm-8">
+                            <h2 class="mr-3 mb-0">Očistimo Košutnjak</h2>
+                            <a style="color:#00A2C7" href="#" data-toggle="modal" data-target="#example1Modal">Opis aktivnosti</a>
+                            <div class="modal fade" id="example1Modal" tabindex="-1" role="dialog" aria-labelledby="example1ModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="example1ModalLabel">Zelena Inicijativa Beograd - Očistimo Košutnjak</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row" style="margin-top: 10px;">
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-pin-map"></i>&nbsp;&nbsp;Beograd</div>
+                                                <div class="col-sm-6 d-flex justify-content-center"><i class="bi bi-calendar4-week"></i>&nbsp;&nbsp;1.4.2024.-3.4.2024.</div>
+                                            </div>
+                                            <div class="row" style="margin-top: 15px;">
+                                                <div class="col-sm-12 text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aut quidem quisquam fugiat porro similique quis maxime praesentium esse cupiditate. Nemo atque itaque sapiente neque, illum officia nam pariatur, voluptate auoluta nihil, praesentium omnis harum optio mollitia. Praesentium asperiores laboriosam hic? Quod reprehenderit non amet itaque rerum atque laudantium iste totam aspernatur placeat natus quisquam, animi deserunt. Illum et corrupti voluptatum dolore, veniam enim magnam deserunt quasi nobis! Delectus amet magni quis reprehenderit architecto hic earum harum natus quasi ut, ullam, neque doloribus nesciunt aspernatur placeat quam officia ducimus officiis esse iure corrupti! Ullam beatae perspiciatis, ratione repellat pariatur nisi veniam eum tempora culpa animi, aspernatur in veritatis iure ad. Magni modi nemo facere illo animi cum alias nisi iure inventore hic non ex, ipsam accusamus aliquam, est iusto molestiae atque maiores? Alias sequi tempore voluptatibus eaque repellat ab totam laudantium nesciunt libero laborum minus quae nisi provident, maiores obcaecati? Mollitia, error tempore, minus voluptas recusandae ipsum rem delectus, quis esse eius unde vero inventore maxime. Accusamus, rerum eos? Quasi perspiciatis id ex?</div>
+                                            </div>
+                                            <div class="row d-flex align-items-center" style="margin-top: 10px;">
+                                                <div class="col-sm-6">
+                                                    <div>
+                                                        Kategorija: Manuelni rad
+                                                    </div>
+                                                    <div>
+                                                        Potrebne veštine:
+                                                        <ul style="padding-left: 25px; ">
+                                                            <li type="square">Vozačka dozvola</li>   
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div>Poslednji dan za prijavu: 31.3.2024.</div>
+                                                    <div>Broj slobodnih mesta: 10</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="d-flex justify-content-end align-items-center" style="margin-bottom: 5px;">
+                                <div class="mr-2">Broj preostalih mesta: <span id="peopleCount">10</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+</body>
+
+
+
+</html>

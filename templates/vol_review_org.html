@@ -1,0 +1,157 @@
+{%load static%}
+<!--natalija-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="{% static './CSS/main_page.css' %}" rel="stylesheet" />
+    <link href="{% static './CSS/org_profile.css' %}" rel="stylesheet" />
+    <link
+      href="{% static './CSS/org_review_volonteers.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static './CSS/vol_review_org.css' %}" rel="stylesheet" />
+    <title>Oceni organizacije</title>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+  </head>
+  <body>
+    {{navbar|safe}}
+    <div class="container" style="background-color: #f2fafb; margin-top: 20px">
+      <div class="row justify-content-center" style="padding-top: 20px"></div>
+      <div class="container" style="padding: 30px; padding-top: 0px">
+        {% for org in orgs %}
+        <div
+          class="row justify-content-center align-items-center"
+          style="background-color: #caf1f6"
+        >
+          <div class="col-sm-4">{{org.ime}} - {{org.aktName}}</div>
+          <div class="prijave col-sm-8 d-flex justify-content-end">
+            <a
+              href="#"
+              data-toggle="modal"
+              data-target="#Organizacija{{org.idkor}}"
+            >
+              <button
+                type="button"
+                class="btn btn-primary btn-block btn-sm float-right"
+              >
+                Ostavi recenziju organizaciji
+              </button>
+            </a>
+            <div
+              class="modal fade"
+              id="Organizacija{{org.idkor}}"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="Organizacija{{org.idkor}}Label"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="Organizacija{{org.idkor}}Label">
+                      Recenzija
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <form
+                        action="{% url 'review_organizations' %}"
+                        method="post"
+                      >
+                        <div class="form-group" style="padding-top: 0">
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="recommendation"
+                              id="recommendYes{{org.idkor}}"
+                              value="P"
+                              checked
+                            />
+                            <label
+                              class="form-check-label"
+                              for="recommendYes{{org.idkor}}"
+                              >Preporučujem</label
+                            >
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="recommendation"
+                              id="recommendNo{{org.idkor}}"
+                              value="N"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="recommendNo{{org.idkor}}"
+                              >Ne preporučujem</label
+                            >
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="comment">Komentar:</label>
+                          <textarea
+                            class="form-control"
+                            id="comment{{org.idkor}}"
+                            name="comment"
+                            rows="3"
+                          ></textarea>
+                        </div>
+                        <input
+                          type="hidden"
+                          name="prijava"
+                          value="{{org.idPrijave}}"
+                        />
+                        <div class="row">
+                          <div class="col-sm-6 d-flex justify-content-center">
+                            <button
+                              type="button"
+                              class="btn btn-secondary"
+                              data-dismiss="modal"
+                            >
+                              Odustani
+                            </button>
+                          </div>
+                          <div class="col-sm-6 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-primary">
+                              Potvrdi
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        {% endfor %}
+      </div>
+    </div>
+    {{footer|safe}}
+  </body>
+</html>

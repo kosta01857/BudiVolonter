@@ -1,0 +1,118 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+#inbox {
+  font-size: 20px;
+}
+#OtvoriAkt {
+  padding: 8px 60px;
+  border-color: #5c7c2f;
+}
+.row {
+  padding: 0px;
+}
+#user-info {
+}
+#EDIT {
+  align-self: right;
+  padding: 8px 16px;
+  background-color: #00a2c7;
+  color: #f8faf8;
+  font-size: 10px;
+}
+
+#EDIT:hover {
+  background-color: #0797b9;
+  border-color: #107d98;
+}
+
+#org-info table tr td {
+  color: #107d98;
+}
+
+.tabovi-otvorene-arhivirane {
+  width: 50%;
+  text-align: center;
+  background-color: #caf1f6;
+}
+
+.tabovi-otvorene-arhivirane a {
+  color: #107d98;
+  font-size: 20px;
+}
+
+.aktivnost {
+  background-color: #f2fafb;
+  border-color: #9ddde7;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px 20px;
+  padding-top: 20px;
+}
+
+.prijave button {
+  align-self: right;
+  width: 150px;
+  height: 40px;
+  background-color: #00a2c7;
+  border: none;
+  color: #f8faf8;
+}
+
+.prijave button:hover,
+.plus-minus button:hover,
+.oceni-volontere button:hover {
+  background-color: #0797b9;
+  border-color: #107d98;
+}
+
+.plus-minus button {
+  background-color: #00a2c7;
+  border: none;
+  color: #f8faf8;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+.recenzije {
+  background-color: #9ddde7;
+  border: none;
+  color: #0d3c48;
+}
+
+.recenzije:hover {
+  background-color: #0797b9;
+  border-color: #107d98;
+}
+
+.oceni-volontere button {
+  align-self: right;
+  width: 230px;
+  height: 40px;
+  background-color: #00a2c7;
+  border: none;
+  color: #f8faf8;
+}
+
+.recenzije_sekcija {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dobar,
+.los {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+}
+
+.dobar {
+  background-color: #b5e9f0;
+}
+
+.los {
+  background-color: #ffd19a;
+}

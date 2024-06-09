@@ -1,0 +1,115 @@
+{%load static%}
+<!--Anja Mihajlov 2020/0339-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BV Registracija Organizacije</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="{% static 'CSS/main_page.css'%}" rel="stylesheet" />
+    <link href="{% static 'CSS/reg_org.css' %}" rel="stylesheet" />
+    <script src="{% static 'JS/regex.js' %}"></script>
+    <script src="{% static 'JS/switchPage.js' %}"></script>
+  </head>
+  <body style="background-color: #fcfdfa" onload="addListeners()">
+    {{navbar|safe}}
+    <div class="container-fluid" style="color: #37401c">
+      <div
+        class="row justify-content-center align-items-center"
+        style="height: 100vh"
+      >
+        <div class="col-md-6" style="padding-top: 20px">
+          <h2 class="text-center mb-4">Registracija Organizacije</h2>
+          <form id="registrationForm" method="POST">
+            <div class="form-group">
+              <div class="name error" id="name error"></div>
+              <label for="nazivOrganizacije">Naziv organizacije:</label>
+              <input
+                type="text"
+                id="ime"
+                name="nazivOrganizacije"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div class="error" id="pib error"></div>
+              <label for="pib">PIB:</label>
+              <input
+                type="text"
+                id="pib"
+                name="pib"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="tel error" class="error"></div>
+              <label for="telefon">Broj telefona:</label>
+              <input
+                type="tel"
+                id="telefon"
+                name="telefon"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="email error" class="error"></div>
+              <label for="email">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div id="pass error" class="error"></div>
+              <label for="lozinka">Lozinka:</label>
+              <input
+                type="password"
+                id="lozinka"
+                name="lozinka"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div class="error" id="confirm pass error"></div>
+              <label for="potvrdiLozinku">Potvrdite lozinku:</label>
+              <input
+                type="password"
+                id="potvrdiLozinku"
+                name="potvrdiLozinku"
+                class="form-control"
+                required
+              />
+            </div>
+            <div class="d-flex justify-content-center">
+              <button id="confirm btn" class="dugme">
+                Potvrdi registraciju
+              </button>
+            </div>
+          </form>
+          {% if poruka %}
+          <p>{{ poruka }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    {{footer|safe}}
+  </body>
+</html>

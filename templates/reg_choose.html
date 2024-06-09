@@ -1,0 +1,78 @@
+{%load static%}
+<!--Anja Mihajlov 2020/0339-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link href="{% static './CSS/main_page.css' %}" rel="stylesheet" />
+    <link href="{% static './CSS/reg_choose.css' %}" rel="stylesheet" />
+    <script src="{% static './JS/switchPage.js' %}"></script>
+    <title>BV Registracija</title>
+    <script src="{% static './JS/switchPage.js' %}"></script>
+  </head>
+  <body style="background-color: #fcfdfa">
+    {{navbar|safe}}
+    <div
+      class="container-fluid d-flex"
+      style="
+        justify-content: center;
+        padding: 0px;
+        padding-top: 70px;
+        height: 100vh;
+        margin: 0px;
+      "
+    >
+      <div>
+        <h2
+          style="
+            color: #37401c;
+            padding-bottom: 40px;
+            justify-content: center;
+            padding-left: 250px;
+          "
+        >
+          Registracija
+        </h2>
+        <button
+          class="dugme"
+          onclick="switchPage('register_volunteer')"
+          style="width: 300px"
+        >
+          Volonter
+        </button>
+        <button
+          class="dugme"
+          onclick="switchPage('register_organization')"
+          style="width: 300px"
+        >
+          Organizacija
+        </button>
+      </div>
+    </div>
+    {{footer|safe}}
+  </body>
+</html>
