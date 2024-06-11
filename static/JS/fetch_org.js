@@ -1,3 +1,6 @@
+function toggleRevs(id) {
+	$(`#review${id}`).toggle();
+  }
 function buildHTML(curr_id, id, response) {
   let acts = response["active_activities"];
   let str1 = "";
@@ -102,7 +105,7 @@ function buildHTML(curr_id, id, response) {
     let cntN = 0;
     for (let rev of reviews) {
       if (rev.preporukavol == "P") cntP++;
-      else cntN++;
+      else if (rev.preporukavol == 'N') cntN++;
     }
     str2 += `
 				<div class="aktivnost">

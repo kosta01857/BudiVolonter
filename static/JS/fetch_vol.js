@@ -78,15 +78,20 @@ async function getActivities(id) {
     console.log("FAILED FETCHING ACTIVITES");
     result["activities"] = null;
   }
-);
 	return result.json();
 }
 
 async function renderActivities(id) {
   let html;
-  let activities = await getActivities(id);
+  let result = await getActivities(id);
+  let activities = result['activities']
+  console.log(activities.length)
+  if(activities.length == 0){
+	$("#sve_aktivnosti").html("<span> NEMA AKTIVNOSTI  </span>")
+	return;
+  }
   if (!activities) {
     html = "failed to render activites";
   } else html = buildHTML(activities);
-  $("#sve_aktivnosti").html("<h1>ISTORIJA AKTIVNOSTI</h1>" + html);
+  $("#sve_aktivnosti").html("<div class='border border-2 p-3 m-3'><h1>ISTORIJA AKTIVNOSTI</h1></div>" + html);
 }

@@ -34,92 +34,30 @@
     {{navbar|safe}}
     <div class="container-fluid">
       <div class="row">
-        <div class="col-sm-8" style="background-color: #f8faf3">
+        <div class="col-sm-12" style="background-color: #f8faf3">
+          <div id = 'cardbox'>
           {%for act in acts%}
-          <div class="aktivnost">
-            <div class="row align-items-center">
-              <div class="col-sm-8">
-                <h2 class="mr-3 mb-0">{{act.naziv}}</h2>
-                <a
-                  style="color: #00a2c7"
-                  href="#"
-                  data-toggle="modal"
-                  data-target="#example{{act.idakt}}Modal"
-                  >Opis akivnosti</a
-                >
-                <div
-                  class="modal fade"
-                  id="example{{act.idakt}}Modal"
-                  tabindex="-1"
-                  role="dialog"
-                  aria-labelledby="example{{act.idakt}}ModalLabel"
-                  aria-hidden="true"
-                >
-                  <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5
-                          class="modal-title"
-                          id="example{{act.idakt}}ModalLabel"
-                        >
-                          {{act.organizacija}} - {{act.naziv}}
-                        </h5>
-                        <button
-                          type="button"
-                          class="close"
-                          data-dismiss="modal"
-                          aria-label="Close"
-                        >
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                        <div class="row" style="margin-top: 10px">
-                          <div class="col-sm-6 d-flex justify-content-center">
-                            <i class="bi bi-pin-map"></i
-                            >&nbsp;&nbsp;{{act.mesto}}, {{act.drzava}}
-                          </div>
-                          <div class="col-sm-6 d-flex justify-content-center">
-                            <i class="bi bi-calendar4-week"></i
-                            >&nbsp;&nbsp;{{act.datumod|date:'d.m.Y'}}-{{act.datumdo|date:'d.m.Y'}}
-                          </div>
-                        </div>
-                        <div class="row" style="margin-top: 15px">
-                          <div class="col-sm-12 text-justify">{{act.opis}}</div>
-                        </div>
-                        <div
-                          class="row d-flex align-items-center"
-                          style="margin-top: 10px"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="prijave d-flex justify-content-end">
-					<a href="profile?id={{act.idorg}}">
-                    <button
-					  name='prijavaBtn' 
-                      type="button"
-                      onclick=""
-                      class="btn btn-primary btn-block btn-sm float-right"
-                    >
-                     Profil organizacije 
-                    </button>
-                  </a>
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div
-                  class="d-flex justify-content-end align-items-center"
-                  style="margin-bottom: 5px"
-                ></div>
-              </div>
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{act.naziv}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{act.organizacija}}</h6>
+              <p class="card-text">{{act.datumod|date:'d.m.Y'}}-{{act.datumdo|date:'d.m.Y'}}</p>
+              <a href="profile?id={{act.idorg}}" class="card-link">Profil organizacije</a>
             </div>
           </div>
           {%endfor%}
         </div>
+        </div>
       </div>
     </div>
     {{footer|safe}}
+    <style>
+      #cardbox{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+      }
+    </style>
   </body>
 </html>
